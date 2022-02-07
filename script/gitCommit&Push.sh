@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #!/bin/bash
 echo -e "
   /000000                                        /00   /00
@@ -21,11 +20,15 @@ echo -e "
 |  0000/00      | 00      |  000000/|  000000/| 00  | 00
  \____/\_/      |__/       \______/  \______/ |__/  |__/
                                                             "
-=======
-#/bin/bash
->>>>>>> parent of 7e38ab8... + Add this.sh
+
 git add .
-read -p "Insert Commit Message: " message
+echo " + All file staged"
+read -p " + Insert Commit Message: " message
 git commit -m "$message"
-read -p "Continue? (Y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
+git status
+echo " + Commit message: $message"
+read -p "Do you want to push (Y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
 git push origin
+echo " + All file pushed with success"
+echo " Bye Bye"
+exit 0
