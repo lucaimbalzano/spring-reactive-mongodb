@@ -24,6 +24,31 @@ public class ReactivePersonController {
    @GetMapping( value= "/allpeople", produces = MediaType.APPLICATION_JSON_VALUE)
    public Flux<PersonDTO> getAllPeople(){ return personService.getPeople(); }
 
+    @GetMapping( value = "/getperson/{id}" , produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<PersonDTO> getPersonById(@PathVariable String id){
+        return personService.getPersonById(id);
+    }
+
+    @GetMapping( value = "/getpersonsortname/{name}" , produces = MediaType.APPLICATION_JSON_VALUE)
+    public Flux<PersonDTO> getAllPeopleSortByName(@PathVariable String name){
+        return personService.getAllPeopleSortByName(name);
+    }
+
+    @GetMapping( value = "/getpeoplebyoddage" , produces = MediaType.APPLICATION_JSON_VALUE)
+    public Flux<PersonDTO> getPeopleByOddAge(){
+        return personService.getPeopleByOddAge();
+    }
+
+    @GetMapping( value = "/getpeoplebyevenage" , produces = MediaType.APPLICATION_JSON_VALUE)
+    public Flux<PersonDTO> getPeopleByEvenAge(){
+        return personService.getPeopleByEvenAge();
+    }
+
+    @GetMapping( value = "/getallpeoplesortbyage/{age}" , produces = MediaType.APPLICATION_JSON_VALUE)
+    public Flux<PersonDTO> getAllPeopleSortByAge(@PathVariable Integer age){
+        return personService.getAllPeopleSortByAge(age);
+    }
+
     @PostMapping( value = "/addperson" , consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<PersonDTO> addPerson(@RequestBody Mono<PersonDTO> personDTOMono){
        return personService.addPeople(personDTOMono);
