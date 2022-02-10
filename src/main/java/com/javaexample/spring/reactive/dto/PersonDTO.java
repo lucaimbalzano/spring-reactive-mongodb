@@ -5,24 +5,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collation = "test")
 public class PersonDTO {
 
     private String id;
-    private String name;
+    private String firstname;
+    public String surname;
+    public Date birth;
     private Integer age;
+    private AddressDTO addressDTO;
 
-    public PersonDTO(Integer id, String name, Integer age) {
-        this.id = id.toString();
-        this.name = name;
-        this.age = age;
-    }
-
-    public PersonDTO(String name, Integer age) {
-        this.name = name;
-        this.age = age;
-    }
 }

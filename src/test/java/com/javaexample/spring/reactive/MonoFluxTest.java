@@ -17,15 +17,16 @@ import java.util.Random;
 public class MonoFluxTest {
     @Test
     public void testMono(){
-        List<PersonDTO> list = fillRandomList();
-        Mono<List<PersonDTO>> monoPerson = Mono.just(list).log();
-        monoPerson.subscribe(r -> Arrays.toString(r.toArray()));
+//        List<PersonDTO> list = fillRandomList();
+//        Mono<List<PersonDTO>> monoPerson = Mono.just(list).log();
+//        monoPerson.subscribe(r -> Arrays.toString(r.toArray()));
        //monoPerson.subscribe(System.out::println);
     }
 
     @Test
     public void testMonoException(){
-        Mono<?> monoPerson = Mono.just(new PersonDTO(0,"lucas",33))
+
+        Mono<?> monoPerson = Mono.just(new PersonDTO())
                // .then(Mono.error(new RuntimeException("Exception occurred TEST")))
                 .log();
         monoPerson.subscribe(System.out::println, (e) -> System.out.println(e.getMessage()));
@@ -68,26 +69,26 @@ public class MonoFluxTest {
                 .doOnSuccess(success -> log.info(" ++ doOnsuccess() executed,  {}", success));
     }
 
-    @Test
-    public void rangeFlux(){
-        StepVerifier.create(Flux.range(1,10)
-                                .log()
-                                .map(i -> {
-                                    if(i==11)
-                                        throw new IndexOutOfBoundsException("Index Error Occured");
-                                    return i;
-                                })
-                            )
-                    .expectNext(1,2,3,4,5,6,7,8,9,10)
-                  //  .expectError(IndexOutOfBoundsException.class)
-                    .verifyComplete();
-    }
-
-    private List<PersonDTO> fillRandomList(){
-        List<PersonDTO> list = new ArrayList<>();
-        for(int i = 0; i <= 1000; i++){
-            list.add(new PersonDTO(i,"randomName"+i, Math.abs(new Random().nextInt()%100)));
-        }
-        return list;
-    }
+//    @Test
+//    public void rangeFlux(){
+//        StepVerifier.create(Flux.range(1,10)
+//                                .log()
+//                                .map(i -> {
+//                                    if(i==11)
+//                                        throw new IndexOutOfBoundsException("Index Error Occured");
+//                                    return i;
+//                                })
+//                            )
+//                    .expectNext(1,2,3,4,5,6,7,8,9,10)
+//                   .expectError(IndexOutOfBoundsException.class)
+//                    .verifyComplete();
+//    }
+//
+////    private List<PersonDTO> fillRandomList(){
+//        List<PersonDTO> list = new ArrayList<>();
+//        for(int i = 0; i <= 1000; i++){
+//            list.add(new PersonDTO(i,"randomName"+i, Math.abs(new Random().nextInt()%100)));
+//        }
+//        return list;
+//    }
 }

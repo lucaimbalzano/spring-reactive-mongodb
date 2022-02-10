@@ -1,6 +1,7 @@
 package com.javaexample.spring.reactive.service;
 
 
+import com.javaexample.spring.reactive.dto.AddressDTO;
 import com.javaexample.spring.reactive.dto.PersonDTO;
 import com.javaexample.spring.reactive.repository.PersonRepository;
 import com.javaexample.spring.reactive.transformer.PersonTransformer;
@@ -28,14 +29,14 @@ public class PersonService {
 
     public Mono<PersonDTO> getPersonById(String id) {
         log.info(" +++ @Service getPeopleById(String s) called");
-          return personRepository.findById(id).map(PersonTransformer::entityToDTO);
+          return personRepository.findById(id).map(PersonTransformer::entityToDTO).switchIfEmpty(Mono.just(new PersonDTO()));
     }
 
     public Flux<PersonDTO> getAllPeopleSortByName(String nameToSort){
         log.info(" +++ @Service getAllPeopleSortByName(String s) called");
         Flux<PersonDTO> personDTOFlux = personRepository.findAll()
                                 .map(PersonTransformer::entityToDTO)
-                                .filter(p -> p.getName().equalsIgnoreCase(nameToSort))
+                                .filter(p -> p.getFirstname().equalsIgnoreCase(nameToSort))
                                 .log();
         personDTOFlux.subscribe();
         return personDTOFlux;
@@ -109,9 +110,26 @@ public class PersonService {
     }
     private List<PersonDTO> fillRandomList(){
         List<PersonDTO> list = new ArrayList<>();
+        AddressDTO addressDTO = new AddressDTO();
         for(int i = 0; i <= 1000; i++){
-            list.add(new PersonDTO(i,"randomName"+i,Math.abs(new Random().nextInt()%1000)));
+
+        //    list.add(new PersonDTO(i,"randomName"+i,Math.abs(new Random().nextInt()%1000)));
         }
         return list;
     }
+
+    private String getRandomString(){
+        int leftLimit = 97; // letter 'a'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 24;
+        Random random = new Random();
+
+        String generatedString = random.ints(leftLimit, rightLimit + 1)
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+
+        return generatedString;
+    }
+
 }
