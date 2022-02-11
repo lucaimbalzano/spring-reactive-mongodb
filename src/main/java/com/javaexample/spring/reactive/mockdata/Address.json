@@ -1,3 +1,4 @@
+db.address.insertMany(
 [{"id":1,"street":"Cordelia","streetNumber":"250","postalCode":2341,"city":"Guchang","countryCode":"CN"},
 {"id":2,"street":"Oakridge","streetNumber":"9","postalCode":2342,"city":"Frederiksberg","countryCode":"DK"},
 {"id":3,"street":"Ruskin","streetNumber":"56","postalCode":2343,"city":"Urzuf","countryCode":"UA"},
@@ -998,3 +999,8 @@
 {"id":998,"street":"Everett","streetNumber":"71562","postalCode":3338,"city":"Gonghe","countryCode":"CN"},
 {"id":999,"street":"Utah","streetNumber":"99220","postalCode":3339,"city":"Malishka","countryCode":"AM"},
 {"id":1000,"street":"Huxley","streetNumber":"06","postalCode":3340,"city":"Krasnokamensk","countryCode":"RU"}]
+);
+
+
+//if you want delete all id
+//db.address.update({}, {$unset: {id: 1}}, {multi: true});

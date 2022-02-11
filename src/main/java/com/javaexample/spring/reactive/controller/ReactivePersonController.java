@@ -2,9 +2,12 @@ package com.javaexample.spring.reactive.controller;
 
 
 import com.javaexample.spring.reactive.dto.PersonDTO;
+import com.javaexample.spring.reactive.service.AddressService;
 import com.javaexample.spring.reactive.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +23,9 @@ public class ReactivePersonController {
 
     @Autowired
     private PersonService personService;
+
+    @Autowired
+    private AddressService addressService;
 
    @GetMapping( value= "/allpeople", produces = MediaType.APPLICATION_JSON_VALUE)
    public Flux<PersonDTO> getAllPeople(){ return personService.getPeople(); }
@@ -68,7 +74,7 @@ public class ReactivePersonController {
     public String initDatabase(){
        String result = "";
        try{
-           result = personService.initDb();
+           result = personService.initDb(addressService);
        }catch (Exception e){
            log.error(" -- Error Occured: "+e.getMessage());
            e.printStackTrace();

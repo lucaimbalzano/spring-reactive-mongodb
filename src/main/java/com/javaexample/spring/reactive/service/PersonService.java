@@ -1,9 +1,11 @@
 package com.javaexample.spring.reactive.service;
 
 
+import com.javaexample.spring.reactive.controller.ReactiveAddressController;
 import com.javaexample.spring.reactive.dto.AddressDTO;
 import com.javaexample.spring.reactive.dto.PersonDTO;
 import com.javaexample.spring.reactive.repository.PersonRepository;
+import com.javaexample.spring.reactive.transformer.AddressTransformer;
 import com.javaexample.spring.reactive.transformer.PersonTransformer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +13,10 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Slf4j
@@ -96,25 +99,27 @@ public class PersonService {
         return "Person deleted with success";
     }
 
-    public String initDb() throws Exception{
+    public String initDb(AddressService addressService) throws Exception{
         log.info(" ++ @Service Initializating Database - START");
         Mono<Void> deleteAllPeople = personRepository.deleteAll();
         deleteAllPeople.subscribe();
-
-        Flux.fromIterable( fillRandomList()).flatMap( person -> Mono.just(PersonTransformer.dtoToEntity(person)))
+        List<PersonDTO> list = fillRandomList(addressService);
+        Flux.fromIterable(list).flatMap( person -> Mono.just(PersonTransformer.dtoToEntity(person)))
                 .flatMap(personEntity -> personRepository.save(personEntity))
                 .subscribe();
         log.info(" ++ Total people: " +personRepository.count());
         log.info(" ++ @Service Initializating Database - END");
         return "Database Initialized";
     }
-    private List<PersonDTO> fillRandomList(){
+    private List<PersonDTO> fillRandomList(AddressService addressService){
         List<PersonDTO> list = new ArrayList<>();
-        AddressDTO addressDTO = new AddressDTO();
-        for(int i = 0; i <= 1000; i++){
-
-        //    list.add(new PersonDTO(i,"randomName"+i,Math.abs(new Random().nextInt()%1000)));
-        }
+        ReactiveAddressController addressController = new ReactiveAddressController();
+        int i=0;
+        Date date = parseDate("1974-02-14");
+        List<AddressDTO> addressDTOlist =  addressService.getAddressConvertedFromFluxToArrayListAddressDTO();
+                for(AddressDTO ad: addressDTOlist){
+                    list.add(new PersonDTO(null,"firstname_"+ad.getId(),"surname_"+ad.getId(),date,Math.abs(new Random().nextInt()%1000),ad));
+                }
         return list;
     }
 
@@ -132,4 +137,11 @@ public class PersonService {
         return generatedString;
     }
 
+    public static Date parseDate(String date) {
+        try {
+            return new SimpleDateFormat("yyyy-MM-dd").parse(date);
+        } catch (ParseException e) {
+            return null;
+        }
+    }
 }
