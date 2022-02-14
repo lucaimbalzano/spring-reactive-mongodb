@@ -25,18 +25,18 @@ public class ReactiveAddressController {
     @Autowired
     private AddressService addressService;
 
-    @GetMapping( value = "/getaddress/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<AddressDTO> getAddressById(@PathVariable String id){
+    @GetMapping(value = "/getaddress/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<AddressDTO> getAddressById(@PathVariable String id) {
         return addressService.getAddressById(id);
     }
 
     @GetMapping("/getall")//( value = "/getall")//, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Flux<AddressDTO> getAll(){
+    public Flux<AddressDTO> getAll() {
         return addressService.getAllAddress();
     }
 
     @GetMapping("/getallid")// ,produces = MediaType.APPLICATION_JSON_VALUE)
-    public Flux<AddressDTO> getallid(){
+    public Flux<AddressDTO> getallid() {
         return addressService.getAllAddressesId();
     }
 

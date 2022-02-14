@@ -27,58 +27,60 @@ public class ReactivePersonController {
     @Autowired
     private AddressService addressService;
 
-   @GetMapping( value= "/allpeople", produces = MediaType.APPLICATION_JSON_VALUE)
-   public Flux<PersonDTO> getAllPeople(){ return personService.getPeople(); }
+    @GetMapping(value = "/allpeople", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Flux<PersonDTO> getAllPeople() {
+        return personService.getPeople();
+    }
 
-    @GetMapping( value = "/getperson/{id}" , produces = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<PersonDTO> getPersonById(@PathVariable String id){
+    @GetMapping(value = "/getperson/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<PersonDTO> getPersonById(@PathVariable String id) {
         return personService.getPersonById(id);
     }
 
-    @GetMapping( value = "/getpersonsortname/{name}" , produces = MediaType.APPLICATION_JSON_VALUE)
-    public Flux<PersonDTO> getAllPeopleSortByName(@PathVariable String name){
+    @GetMapping(value = "/getpersonsortname/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Flux<PersonDTO> getAllPeopleSortByName(@PathVariable String name) {
         return personService.getAllPeopleSortByName(name);
     }
 
-    @GetMapping( value = "/getpeoplebyoddage" , produces = MediaType.APPLICATION_JSON_VALUE)
-    public Flux<PersonDTO> getPeopleByOddAge(){
+    @GetMapping(value = "/getpeoplebyoddage", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Flux<PersonDTO> getPeopleByOddAge() {
         return personService.getPeopleByOddAge();
     }
 
-    @GetMapping( value = "/getpeoplebyevenage" , produces = MediaType.APPLICATION_JSON_VALUE)
-    public Flux<PersonDTO> getPeopleByEvenAge(){
+    @GetMapping(value = "/getpeoplebyevenage", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Flux<PersonDTO> getPeopleByEvenAge() {
         return personService.getPeopleByEvenAge();
     }
 
-    @GetMapping( value = "/getallpeoplesortbyage/{age}" , produces = MediaType.APPLICATION_JSON_VALUE)
-    public Flux<PersonDTO> getAllPeopleSortByAge(@PathVariable Integer age){
+    @GetMapping(value = "/getallpeoplesortbyage/{age}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Flux<PersonDTO> getAllPeopleSortByAge(@PathVariable Integer age) {
         return personService.getAllPeopleSortByAge(age);
     }
 
-    @PostMapping( value = "/addperson" , consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<PersonDTO> addPerson(@RequestBody Mono<PersonDTO> personDTOMono){
-       return personService.addPeople(personDTOMono);
+    @PostMapping(value = "/addperson", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<PersonDTO> addPerson(@RequestBody Mono<PersonDTO> personDTOMono) {
+        return personService.addPeople(personDTOMono);
     }
 
-    @PutMapping( value = "/updateperson/{id}" , consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<PersonDTO> updatePerson(@RequestBody Mono<PersonDTO> personDTOMono, @PathVariable String id){
-       return personService.updatePeople(personDTOMono,id);
+    @PutMapping(value = "/updateperson/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<PersonDTO> updatePerson(@RequestBody Mono<PersonDTO> personDTOMono, @PathVariable String id) {
+        return personService.updatePeople(personDTOMono, id);
     }
 
-    @DeleteMapping( value = "/deleteperson/{id}")
-    public String deletePerson(@PathVariable String id){
-       return personService.deletePerson(id);
+    @DeleteMapping(value = "/deleteperson/{id}")
+    public String deletePerson(@PathVariable String id) {
+        return personService.deletePerson(id);
     }
 
-    @PostMapping( value = "/initDatabase")
-    public String initDatabase(){
-       String result = "";
-       try{
-           result = personService.initDb(addressService);
-       }catch (Exception e){
-           log.error(" -- Error Occured: "+e.getMessage());
-           e.printStackTrace();
-       }
-       return  (result==null? "Error While Initializing Database: result NULL": result);
+    @PostMapping(value = "/initDatabase")
+    public String initDatabase() {
+        String result = "";
+        try {
+            result = personService.initDb(addressService);
+        } catch (Exception e) {
+            log.error(" -- Error Occured: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return (result == null ? "Error While Initializing Database: result NULL" : result);
     }
 }

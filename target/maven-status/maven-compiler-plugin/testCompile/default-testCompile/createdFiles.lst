@@ -1,2 +1,3 @@
 com/javaexample/spring/reactive/SpringReactiveMongodbApplicationTests.class
 com/javaexample/spring/reactive/MonoFluxTest.class
+com/javaexample/spring/reactive/cucumber/CucumberTest.class

@@ -2,6 +2,7 @@ package com.javaexample.spring.reactive.exercises;
 
 
 //generic imports to help with simpler IDEs (ie tech.io)
+
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.function.*;
@@ -28,14 +29,14 @@ public class Part01Flux {
 
     // Return a Flux that contains 2 values "foo" and "bar" without using an array or a collection
     public Flux<String> fooBarFluxFromValues() {
-        return Flux.just("foo","bar");
+        return Flux.just("foo", "bar");
     }
 
 //========================================================================================
 
     // Create a Flux from a List that contains 2 values "foo" and "bar"
     public Flux<String> fooBarFluxFromList() {
-        List<String> list = new ArrayList<>(Arrays.asList("foot","bar"));
+        List<String> list = new ArrayList<>(Arrays.asList("foot", "bar"));
         return Flux.fromIterable(list);
     }
 //========================================================================================

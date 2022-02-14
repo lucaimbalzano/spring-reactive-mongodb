@@ -16,7 +16,7 @@ public class AddressDTO {
     private String city;
     private String countryCode;
 
-    public AddressDTO(String idPassed){
+    public AddressDTO(String idPassed) {
         id = idPassed;
     }
 }

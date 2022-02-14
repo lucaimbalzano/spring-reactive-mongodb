@@ -32,47 +32,49 @@ public class PersonService {
 
     public Mono<PersonDTO> getPersonById(String id) {
         log.info(" +++ @Service getPeopleById(String s) called");
-          return personRepository.findById(id).map(PersonTransformer::entityToDTO).switchIfEmpty(Mono.just(new PersonDTO()));
+        return personRepository.findById(id).map(PersonTransformer::entityToDTO).switchIfEmpty(Mono.just(new PersonDTO()));
     }
 
-    public Flux<PersonDTO> getAllPeopleSortByName(String nameToSort){
+    public Flux<PersonDTO> getAllPeopleSortByName(String nameToSort) {
         log.info(" +++ @Service getAllPeopleSortByName(String s) called");
         Flux<PersonDTO> personDTOFlux = personRepository.findAll()
-                                .map(PersonTransformer::entityToDTO)
-                                .filter(p -> p.getFirstname().equalsIgnoreCase(nameToSort))
-                                .log();
+                .map(PersonTransformer::entityToDTO)
+                .filter(p -> p.getFirstname().equalsIgnoreCase(nameToSort))
+                .log();
         personDTOFlux.subscribe();
         return personDTOFlux;
     }
 
-    public Flux<PersonDTO> getAllPeopleSortByAge(Integer ageToSort){
+    public Flux<PersonDTO> getAllPeopleSortByAge(Integer ageToSort) {
         log.info(" +++ @Service getAllPeopleSortByAge(Integer i) called");
         return personRepository.findAll()
                 .map(PersonTransformer::entityToDTO)
-                .filter(p -> p.getAge()  == ageToSort)
+                .filter(p -> p.getAge() == ageToSort)
                 .log();
     }
 
-    public Flux<PersonDTO> getPeopleByOddAge(){
+    public Flux<PersonDTO> getPeopleByOddAge() {
         log.info(" +++ @Service getPeopleByOddAge() called");
         return personRepository.findAll()
-                                .map(PersonTransformer::entityToDTO)
-                                .filter(personDTO -> personDTO.getAge()%2 != 0)
-                                .log();
+                .map(PersonTransformer::entityToDTO)
+                .filter(personDTO -> personDTO.getAge() % 2 != 0)
+                .log();
     }
 
-    public Flux<PersonDTO> getPeopleByEvenAge(){
+    public Flux<PersonDTO> getPeopleByEvenAge() {
         log.info(" +++ @Service getPeopleByEvenAge() called");
         return personRepository.findAll()
                 .map(PersonTransformer::entityToDTO)
-                .filter(personDTO -> personDTO.getAge()%2 == 0)
+                .filter(personDTO -> personDTO.getAge() % 2 == 0)
                 .log();
     }
 
-    public List<PersonDTO> getPeopleConvertedFromFluxToArrayListPersonDTO(){
+    public List<PersonDTO> getPeopleConvertedFromFluxToArrayListPersonDTO() {
         log.info(" +++ @Service getPeopleConvertedInArrayList() called");
-            List<PersonDTO> personDTOList = (List<PersonDTO>) personRepository.findAll()
-                    .flatMap(person -> {  return Mono.just(PersonTransformer.entityToDTO(person));});
+        List<PersonDTO> personDTOList = (List<PersonDTO>) personRepository.findAll()
+                .flatMap(person -> {
+                    return Mono.just(PersonTransformer.entityToDTO(person));
+                });
         return personDTOList;
     }
 
@@ -99,31 +101,32 @@ public class PersonService {
         return "Person deleted with success";
     }
 
-    public String initDb(AddressService addressService) throws Exception{
+    public String initDb(AddressService addressService) throws Exception {
         log.info(" ++ @Service Initializating Database - START");
         Mono<Void> deleteAllPeople = personRepository.deleteAll();
         deleteAllPeople.subscribe();
         List<PersonDTO> list = fillRandomList(addressService);
-        Flux.fromIterable(list).flatMap( person -> Mono.just(PersonTransformer.dtoToEntity(person)))
+        Flux.fromIterable(list).flatMap(person -> Mono.just(PersonTransformer.dtoToEntity(person)))
                 .flatMap(personEntity -> personRepository.save(personEntity))
                 .subscribe();
-        log.info(" ++ Total people: " +personRepository.count());
+        log.info(" ++ Total people: " + personRepository.count());
         log.info(" ++ @Service Initializating Database - END");
         return "Database Initialized";
     }
-    private List<PersonDTO> fillRandomList(AddressService addressService){
+
+    private List<PersonDTO> fillRandomList(AddressService addressService) {
         List<PersonDTO> list = new ArrayList<>();
         ReactiveAddressController addressController = new ReactiveAddressController();
-        int i=0;
+        int i = 0;
         Date date = parseDate("1974-02-14");
-        List<AddressDTO> addressDTOlist =  addressService.getAddressConvertedFromFluxToArrayListAddressDTO();
-                for(AddressDTO ad: addressDTOlist){
-                    list.add(new PersonDTO(null,"firstname_"+ad.getId(),"surname_"+ad.getId(),date,Math.abs(new Random().nextInt()%1000),ad));
-                }
+        List<AddressDTO> addressDTOlist = addressService.getAddressConvertedFromFluxToArrayListAddressDTO();
+        for (AddressDTO ad : addressDTOlist) {
+            list.add(new PersonDTO(null, "firstname_" + ad.getId(), "surname_" + ad.getId(), date, Math.abs(new Random().nextInt() % 1000), ad));
+        }
         return list;
     }
 
-    private String getRandomString(){
+    private String getRandomString() {
         int leftLimit = 97; // letter 'a'
         int rightLimit = 122; // letter 'z'
         int targetStringLength = 24;

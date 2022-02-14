@@ -22,17 +22,18 @@ public class AddressService {
     @Autowired
     private AddressRepository addressRepository;
 
-    public Flux<AddressDTO> getAllAddress(){
+    public Flux<AddressDTO> getAllAddress() {
         log.info(" +++ @Service getAllAddress() called");
-            return addressRepository.findAll().map(AddressTransformer::entityToDTO);
+        return addressRepository.findAll().map(AddressTransformer::entityToDTO);
     }
 
-    public Mono<AddressDTO> getAddressById(String id){
+    public Mono<AddressDTO> getAddressById(String id) {
         log.info(" +++ @Service getAddressById(String s) called");
         return addressRepository.findById(id).map(AddressTransformer::entityToDTO);
     }
-//TODO TOFIX
-    public  Flux<AddressDTO> getAllAddressesId(){
+
+    //TODO TOFIX
+    public Flux<AddressDTO> getAllAddressesId() {
         log.info(" +++ @Service getAllAddressesId() called");
         List<String> dtoList = null;
         Flux<AddressDTO> dtoFlux = null;
@@ -42,10 +43,12 @@ public class AddressService {
 
     }
 
-    public List<AddressDTO> getAddressConvertedFromFluxToArrayListAddressDTO(){
+    public List<AddressDTO> getAddressConvertedFromFluxToArrayListAddressDTO() {
         log.info(" +++ @Service getAddressConvertedInArrayList() called");
         List<AddressDTO> addressDTOList = (List<AddressDTO>) addressRepository.findAll()
-                .flatMap(address -> {  return Mono.just(AddressTransformer.entityToDTO(address));});
+                .flatMap(address -> {
+                    return Mono.just(AddressTransformer.entityToDTO(address));
+                });
         return addressDTOList;
     }
 }

@@ -16,54 +16,54 @@ import java.util.Random;
 @Slf4j
 public class MonoFluxTest {
     @Test
-    public void testMono(){
+    public void testMono() {
 //        List<PersonDTO> list = fillRandomList();
 //        Mono<List<PersonDTO>> monoPerson = Mono.just(list).log();
 //        monoPerson.subscribe(r -> Arrays.toString(r.toArray()));
-       //monoPerson.subscribe(System.out::println);
+        //monoPerson.subscribe(System.out::println);
     }
 
     @Test
-    public void testMonoException(){
+    public void testMonoException() {
 
         Mono<?> monoPerson = Mono.just(new PersonDTO())
-               // .then(Mono.error(new RuntimeException("Exception occurred TEST")))
+                // .then(Mono.error(new RuntimeException("Exception occurred TEST")))
                 .log();
         monoPerson.subscribe(System.out::println, (e) -> System.out.println(e.getMessage()));
     }
 
     @Test
-    public void testFlux(){
-        Flux<String> fluxString = Flux.just("123","ABC","abc","OneTwoTree")
+    public void testFlux() {
+        Flux<String> fluxString = Flux.just("123", "ABC", "abc", "OneTwoTree")
                 .concatWithValues("ConcatValues")
-           //     .concatWith(Flux.error(new StackOverflowError("Unbounded Loop")))
+                //     .concatWith(Flux.error(new StackOverflowError("Unbounded Loop")))
                 .log();
         fluxString.subscribe(System.out::println, (e) -> System.out.println(e.getMessage()));
     }
 
     @Test
-    public void monoSubscriberConsumerSubscription(){
+    public void monoSubscriberConsumerSubscription() {
         Mono<String> nameMono = Mono.just("RandomName")
-                                    .log()
-                                    .map(String::toUpperCase);
-        nameMono.subscribe(s -> log.info(" ++ INTO SUBSCRIBE, item transformed with upperCase(): {}",s),
-                                Throwable::printStackTrace,
-                                () -> log.info(" ++ BEFORE SUBSCIPTION REQUEST"),
-                                subscription -> subscription.request(100));
+                .log()
+                .map(String::toUpperCase);
+        nameMono.subscribe(s -> log.info(" ++ INTO SUBSCRIBE, item transformed with upperCase(): {}", s),
+                Throwable::printStackTrace,
+                () -> log.info(" ++ BEFORE SUBSCIPTION REQUEST"),
+                subscription -> subscription.request(100));
         log.info(" ------------------------ ");
 
         StepVerifier.create(nameMono)
-                    .expectNext(nameMono.block())
-                    .verifyComplete();
+                .expectNext(nameMono.block())
+                .verifyComplete();
     }
 
     @Test
-    public void monoOnDoMethod(){
+    public void monoOnDoMethod() {
         Mono<String> nameMono = Mono.just("RandomName");
         nameMono
                 .log()
                 .map(String::toUpperCase)
-                .doOnSubscribe(subscription -> log.info(" ++ doOnSubscribe: {}",subscription))
+                .doOnSubscribe(subscription -> log.info(" ++ doOnSubscribe: {}", subscription))
                 .doOnRequest(request -> log.info(" ++ Request received .. doOnRequest(), rquest: {} ", request))
                 .doOnNext(dataEmit -> log.info(" ++ Data emit succesfully .. doOnNext(), data: {}", dataEmit))
                 .doOnSuccess(success -> log.info(" ++ doOnsuccess() executed,  {}", success));

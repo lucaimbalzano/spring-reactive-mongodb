@@ -1,6 +1,7 @@
 package com.javaexample.spring.reactive.exercises;
 
 //generic imports to help with simpler IDEs (ie tech.io)
+
 import java.util.*;
 import java.util.function.*;
 import java.time.*;
@@ -20,11 +21,11 @@ public class Part04Transform {
     // Capitalize the user username, firstname and lastname
     Mono<User> capitalizeOne(Mono<User> mono) {
         return mono.map(m ->
-                        new User(
-                                m.getFirstname().toUpperCase(),
-                                m.getLastname().toUpperCase(),
-                                m.getUsername().toUpperCase()
-                        ));
+                new User(
+                        m.getFirstname().toUpperCase(),
+                        m.getLastname().toUpperCase(),
+                        m.getUsername().toUpperCase()
+                ));
     }
 
 //========================================================================================
@@ -44,7 +45,7 @@ public class Part04Transform {
     //  Capitalize the users username, firstName and lastName using #asyncCapitalizeUser
     Flux<User> asyncCapitalizeMany(Flux<User> flux) {
 
-       //TODO return flux.map( u -> this::asyncCapitalizeUser(u));
+        //TODO return flux.map( u -> this::asyncCapitalizeUser(u));
         return null;
     }
 

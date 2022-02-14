@@ -24,9 +24,12 @@ public class User {
         this.lastname = lastname;
     }
 
-    public User(String u){ this.username = u;}
+    public User(String u) {
+        this.username = u;
+    }
 
-    public User(){}
+    public User() {
+    }
 
     @Override
     public String toString() {

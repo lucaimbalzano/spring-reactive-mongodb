@@ -18,7 +18,7 @@ public class Part07Errors {
     //  Return a Mono<User> containing User.SAUL when an error occurs in the input Mono,
     //  else do not change the input Mono.
     Mono<User> betterCallSaulForBogusMono(Mono<User> mono) {
-        return mono.onErrorReturn(IllegalStateException.class,User.SAUL);
+        return mono.onErrorReturn(IllegalStateException.class, User.SAUL);
     }
 
 //========================================================================================
@@ -35,11 +35,12 @@ public class Part07Errors {
     // #capitalizeUser method and emits an error containing a GetOutOfHereException error
     Flux<User> capitalizeMany(Flux<User> flux) {
         return flux.map(user -> {
-            try{
-               user = capitalizeUser(user);
-            }catch(GetOutOfHereException goohe){
+            try {
+                user = capitalizeUser(user);
+            } catch (GetOutOfHereException goohe) {
                 goohe.printStackTrace();
-            };
+            }
+            ;
             return user;
         });
     }

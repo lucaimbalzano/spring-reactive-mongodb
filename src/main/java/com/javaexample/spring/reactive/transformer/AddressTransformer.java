@@ -6,18 +6,18 @@ import org.springframework.beans.BeanUtils;
 
 public class AddressTransformer {
 
-    public static Address dtoToEntity(AddressDTO addressDTO){
+    public static Address dtoToEntity(AddressDTO addressDTO) {
         Address address = new Address();
-        if(addressDTO!=null){
-            BeanUtils.copyProperties(addressDTO,address);
+        if (addressDTO != null) {
+            BeanUtils.copyProperties(addressDTO, address);
         }
         return address;
     }
 
-    public static AddressDTO entityToDTO(Address address){
+    public static AddressDTO entityToDTO(Address address) {
         AddressDTO addressDTO = new AddressDTO();
-        if(address!=null){
-            BeanUtils.copyProperties(address,addressDTO);
+        if (address != null) {
+            BeanUtils.copyProperties(address, addressDTO);
         }
         return addressDTO;
     }

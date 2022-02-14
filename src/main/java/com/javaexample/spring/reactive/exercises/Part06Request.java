@@ -1,6 +1,7 @@
 package com.javaexample.spring.reactive.exercises;
 
 //generic imports to help with simpler IDEs (ie tech.io)
+
 import java.util.*;
 import java.util.function.*;
 import java.time.*;
@@ -23,10 +24,10 @@ public class Part06Request {
     //  Create a StepVerifier that initially requests all values and expect 4 values to be received
     StepVerifier requestAllExpectFour(Flux<User> flux) {
         return StepVerifier.create(flux)
-                            .expectSubscription()
-                            .thenRequest(Long.MAX_VALUE)
-                            .expectNextCount(4)
-                            .expectComplete();
+                .expectSubscription()
+                .thenRequest(Long.MAX_VALUE)
+                .expectNextCount(4)
+                .expectComplete();
     }
 
 //========================================================================================

@@ -1,6 +1,7 @@
 package com.javaexample.spring.reactive.exercises;
 
 //generic imports to help with simpler IDEs (ie tech.io)
+
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.function.*;
@@ -56,12 +57,13 @@ public class Part03StepVerifier {
 //========================================================================================
 
     // Expect 10 elements then complete and notice how long the test takes.
-   public void expect10Elements(Flux<Long> flux) {
+    public void expect10Elements(Flux<Long> flux) {
         //StepVerifier.create(flux).expectNextCount(10).expectComplete().verify();
         getTimeFlux(flux).log().subscribe();
 
     }
-    private <T>  Flux<T> getTimeFlux(Flux<T> flux) {
+
+    private <T> Flux<T> getTimeFlux(Flux<T> flux) {
         return Mono.fromSupplier(System::nanoTime)
                 .flatMapMany(time -> flux.doFinally(sig -> log.info("Time taken : " + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - time) + " milliseconds.")));
     }
@@ -82,11 +84,9 @@ public class Part03StepVerifier {
     }
 
 
-
     private void fail() {
         throw new AssertionError("workshop not implemented");
     }
-
 
 
 }
