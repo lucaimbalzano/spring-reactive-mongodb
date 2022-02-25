@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.javaexample.spring.reactive.MonoFluxTest" time="0.048" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.javaexample.spring.reactive.cucumber.CucumberRunningTest" time="4.616" tests="2" errors="2" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="gnome"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
@@ -58,9 +58,82 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="monoSubscriberConsumerSubscription" classname="com.javaexample.spring.reactive.MonoFluxTest" time="0.022"/>
-  <testcase name="monoOnDoMethod" classname="com.javaexample.spring.reactive.MonoFluxTest" time="0.002"/>
-  <testcase name="testFlux" classname="com.javaexample.spring.reactive.MonoFluxTest" time="0.006"/>
-  <testcase name="testMono" classname="com.javaexample.spring.reactive.MonoFluxTest" time="0"/>
-  <testcase name="testMonoException" classname="com.javaexample.spring.reactive.MonoFluxTest" time="0.018"/>
+  <testcase name="Person is going to be added to database mongo db #1" classname="com.javaexample.spring.reactive.cucumber.CucumberRunningTest" time="4.581">
+    <error message="Failed to load ApplicationContext" type="java.lang.IllegalStateException">java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8090 is already in use
+Caused by: org.springframework.boot.web.server.PortInUseException: Port 8090 is already in use
+Caused by: reactor.netty.ChannelBindException: Failed to bind on [0.0.0.0:8090]
+</error>
+    <system-out><![CDATA[2022-02-22 11:14:03.375  INFO 39727 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.javaexample.spring.reactive.cucumber.step.AddPersonStep], using SpringBootContextLoader
+2022-02-22 11:14:03.375  INFO 39727 --- [           main] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.javaexample.spring.reactive.cucumber.step.AddPersonStep]: no resource found for suffixes {-context.xml, Context.groovy}.
+2022-02-22 11:14:03.375  INFO 39727 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.javaexample.spring.reactive.cucumber.step.AddPersonStep]: AddPersonStep does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2022-02-22 11:14:03.382  INFO 39727 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.javaexample.spring.reactive.SpringReactiveMongodbApplication for test class com.javaexample.spring.reactive.cucumber.step.AddPersonStep
+2022-02-22 11:14:03.384  INFO 39727 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2022-02-22 11:14:03.384  INFO 39727 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@7c56c911, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@1de6dc80, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@418d1c03, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@395197cb, org.springframework.test.context.support.DirtiesContextTestExecutionListener@7305cfb1, org.springframework.test.context.transaction.TransactionalTestExecutionListener@582c1f8d, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@71687d8f, org.springframework.test.context.event.EventPublishingTestExecutionListener@443253a6, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@191774d6, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@21ffc00e, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@134955bb, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@45b08b17, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@6723e6b3, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@3883b5e9]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.6.3)
+
+2022-02-22 11:14:03.409  INFO 39727 --- [           main] c.j.s.r.cucumber.step.AddPersonStep      : Starting AddPersonStep using Java 11.0.13 on whngu with PID 39727 (started by whngu in /home/whngu/Documents/git/git-workspaces/Workspace-my-github/spring-reactive-mongodb)
+2022-02-22 11:14:03.409  INFO 39727 --- [           main] c.j.s.r.cucumber.step.AddPersonStep      : The following profiles are active: test
+2022-02-22 11:14:03.505  INFO 39727 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Reactive MongoDB repositories in DEFAULT mode.
+2022-02-22 11:14:03.511  INFO 39727 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 2 Reactive MongoDB repository interfaces.
+2022-02-22 11:14:03.512  INFO 39727 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-02-22 11:14:03.516  INFO 39727 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 2 ms. Found 0 MongoDB repository interfaces.
+2022-02-22 11:14:03.601  INFO 39727 --- [           main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-02-22 11:14:03.611  INFO 39727 --- [           main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-02-22 11:14:03.642  INFO 39727 --- [localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:6, serverValue:33}] to localhost:27017
+2022-02-22 11:14:03.642  INFO 39727 --- [localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:5, serverValue:32}] to localhost:27017
+2022-02-22 11:14:03.647  INFO 39727 --- [localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=9, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=37672374}
+2022-02-22 11:14:03.649  INFO 39727 --- [localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:8, serverValue:35}] to localhost:27017
+2022-02-22 11:14:03.649  INFO 39727 --- [localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:7, serverValue:34}] to localhost:27017
+2022-02-22 11:14:03.649  INFO 39727 --- [localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=9, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=32567982}
+2022-02-22 11:14:03.652  WARN 39727 --- [           main] o.s.data.convert.CustomConversions       : Registering converter from class java.time.LocalDateTime to class org.joda.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-02-22 11:14:03.664  WARN 39727 --- [           main] o.s.data.convert.CustomConversions       : Registering converter from class java.time.LocalDateTime to class org.joda.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-02-22 11:14:03.837  WARN 39727 --- [           main] onfigReactiveWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8090 is already in use
+2022-02-22 11:14:07.901  INFO 39727 --- [           main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-02-22 11:14:07.910 ERROR 39727 --- [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8090 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8090 or configure this application to listen on another port.
+
+]]></system-out>
+  </testcase>
+  <testcase name="com.javaexample.spring.reactive.cucumber.CucumberRunningTest" classname="com.javaexample.spring.reactive.cucumber.CucumberRunningTest" time="4.591">
+    <error type="org.junit.runner.notification.StoppedByUserException">org.junit.runner.notification.StoppedByUserException
+</error>
+    <system-err><![CDATA[&amp#27;[32m&amp#27;[1m┌───────────────────────────────────────────────────────────────────────────────────┐&amp#27;[0m
+&amp#27;[32m&amp#27;[1m│&amp#27;[0m Share your Cucumber Report with your team at &amp#27;[36m&amp#27;[1m&amp#27;[4mhttps://reports.cucumber.io&amp#27;[0m          &amp#27;[32m&amp#27;[1m│&amp#27;[0m
+&amp#27;[32m&amp#27;[1m│&amp#27;[0m Activate publishing with one of the following:                                    &amp#27;[32m&amp#27;[1m│&amp#27;[0m
+&amp#27;[32m&amp#27;[1m│&amp#27;[0m                                                                                   &amp#27;[32m&amp#27;[1m│&amp#27;[0m
+&amp#27;[32m&amp#27;[1m│&amp#27;[0m src/test/resources/cucumber.properties:          &amp#27;[36mcucumber.publish.enabled&amp#27;[0m=&amp#27;[36mtrue&amp#27;[0m    &amp#27;[32m&amp#27;[1m│&amp#27;[0m
+&amp#27;[32m&amp#27;[1m│&amp#27;[0m src/test/resources/junit-platform.properties:    &amp#27;[36mcucumber.publish.enabled&amp#27;[0m=&amp#27;[36mtrue&amp#27;[0m    &amp#27;[32m&amp#27;[1m│&amp#27;[0m
+&amp#27;[32m&amp#27;[1m│&amp#27;[0m Environment variable:                            &amp#27;[36mCUCUMBER_PUBLISH_ENABLED&amp#27;[0m=&amp#27;[36mtrue&amp#27;[0m    &amp#27;[32m&amp#27;[1m│&amp#27;[0m
+&amp#27;[32m&amp#27;[1m│&amp#27;[0m JUnit:                                           &amp#27;[36m@CucumberOptions&amp#27;[0m(publish = &amp#27;[36mtrue&amp#27;[0m) &amp#27;[32m&amp#27;[1m│&amp#27;[0m
+&amp#27;[32m&amp#27;[1m│&amp#27;[0m                                                                                   &amp#27;[32m&amp#27;[1m│&amp#27;[0m
+&amp#27;[32m&amp#27;[1m│&amp#27;[0m More information at &amp#27;[36mhttps://reports.cucumber.io/docs/cucumber-jvm&amp#27;[0m                 &amp#27;[32m&amp#27;[1m│&amp#27;[0m
+&amp#27;[32m&amp#27;[1m│&amp#27;[0m                                                                                   &amp#27;[32m&amp#27;[1m│&amp#27;[0m
+&amp#27;[32m&amp#27;[1m│&amp#27;[0m Disable this message with one of the following:                                   &amp#27;[32m&amp#27;[1m│&amp#27;[0m
+&amp#27;[32m&amp#27;[1m│&amp#27;[0m                                                                                   &amp#27;[32m&amp#27;[1m│&amp#27;[0m
+&amp#27;[32m&amp#27;[1m│&amp#27;[0m src/test/resources/cucumber.properties:          &amp#27;[36mcucumber.publish.quiet&amp#27;[0m=&amp#27;[36mtrue&amp#27;[0m      &amp#27;[32m&amp#27;[1m│&amp#27;[0m
+&amp#27;[32m&amp#27;[1m│&amp#27;[0m src/test/resources/junit-platform.properties:    &amp#27;[36mcucumber.publish.quiet&amp#27;[0m=&amp#27;[36mtrue&amp#27;[0m      &amp#27;[32m&amp#27;[1m│&amp#27;[0m
+&amp#27;[32m&amp#27;[1m└───────────────────────────────────────────────────────────────────────────────────┘&amp#27;[0m
+]]></system-err>
+  </testcase>
 </testsuite>

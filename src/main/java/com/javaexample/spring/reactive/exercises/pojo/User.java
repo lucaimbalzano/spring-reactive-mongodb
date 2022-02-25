@@ -14,18 +14,18 @@ public class User {
     public static final User WALTER = new User("wwhite", "Walter", "White");
     public static final User SAUL = new User("sgoodman", "Saul", "Goodman");
 
-    String username;
+    String surename;
     String firstname;
     String lastname;
 
-    public User(String username, String firstname, String lastname) {
-        this.username = username;
+    public User(String surename, String firstname, String lastname) {
+        this.surename = surename;
         this.firstname = firstname;
         this.lastname = lastname;
     }
 
     public User(String u) {
-        this.username = u;
+        this.surename = u;
     }
 
     public User() {
@@ -34,7 +34,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
+                "surename='" + surename + '\'' +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 '}';
@@ -58,7 +58,7 @@ public class User {
 
         User user = (User) o;
 
-        if (!username.equals(user.username)) {
+        if (!surename.equals(user.surename)) {
             return false;
         }
         if (!firstname.equals(user.firstname)) {
@@ -70,7 +70,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        int result = username.hashCode();
+        int result = surename.hashCode();
         result = 31 * result + firstname.hashCode();
         result = 31 * result + lastname.hashCode();
         return result;

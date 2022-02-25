@@ -24,7 +24,7 @@ public class Part04Transform {
                 new User(
                         m.getFirstname().toUpperCase(),
                         m.getLastname().toUpperCase(),
-                        m.getUsername().toUpperCase()
+                        m.getSurename().toUpperCase()
                 ));
     }
 
@@ -36,7 +36,7 @@ public class Part04Transform {
                 new User(
                         m.getFirstname().toUpperCase(),
                         m.getLastname().toUpperCase(),
-                        m.getUsername().toUpperCase()
+                        m.getSurename().toUpperCase()
                 ));
     }
 
@@ -50,7 +50,7 @@ public class Part04Transform {
     }
 
     Mono<User> asyncCapitalizeUser(User u) {
-        return Mono.just(new User(u.getUsername().toUpperCase(), u.getFirstname().toUpperCase(), u.getLastname().toUpperCase()));
+        return Mono.just(new User(u.getSurename().toUpperCase(), u.getFirstname().toUpperCase(), u.getLastname().toUpperCase()));
     }
 
 }

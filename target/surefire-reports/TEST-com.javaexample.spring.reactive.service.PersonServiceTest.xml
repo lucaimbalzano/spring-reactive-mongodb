@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.javaexample.spring.reactive.MonoFluxTest" time="0.048" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.javaexample.spring.reactive.service.PersonServiceTest" time="0.012" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="gnome"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
@@ -58,9 +58,8 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="monoSubscriberConsumerSubscription" classname="com.javaexample.spring.reactive.MonoFluxTest" time="0.022"/>
-  <testcase name="monoOnDoMethod" classname="com.javaexample.spring.reactive.MonoFluxTest" time="0.002"/>
-  <testcase name="testFlux" classname="com.javaexample.spring.reactive.MonoFluxTest" time="0.006"/>
-  <testcase name="testMono" classname="com.javaexample.spring.reactive.MonoFluxTest" time="0"/>
-  <testcase name="testMonoException" classname="com.javaexample.spring.reactive.MonoFluxTest" time="0.018"/>
+  <testcase name="getAllPeopleSortByName" classname="com.javaexample.spring.reactive.service.PersonServiceTest" time="0.007"/>
+  <testcase name="getPersonById" classname="com.javaexample.spring.reactive.service.PersonServiceTest" time="0.001"/>
+  <testcase name="getPeople" classname="com.javaexample.spring.reactive.service.PersonServiceTest" time="0.001"/>
+  <testcase name="getAllPeopleSortByAge" classname="com.javaexample.spring.reactive.service.PersonServiceTest" time="0.001"/>
 </testsuite>

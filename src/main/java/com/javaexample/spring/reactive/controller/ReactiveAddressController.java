@@ -30,14 +30,15 @@ public class ReactiveAddressController {
         return addressService.getAddressById(id);
     }
 
-    @GetMapping("/getall")//( value = "/getall")//, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/getall", produces = MediaType.APPLICATION_JSON_VALUE)
     public Flux<AddressDTO> getAll() {
         return addressService.getAllAddress();
     }
 
-    @GetMapping("/getallid")// ,produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping( value = "/getallid", produces = MediaType.APPLICATION_JSON_VALUE)
     public Flux<AddressDTO> getallid() {
         return addressService.getAllAddressesId();
     }
+
 
 }

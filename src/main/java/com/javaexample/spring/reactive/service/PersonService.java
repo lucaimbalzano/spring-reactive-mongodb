@@ -55,10 +55,12 @@ public class PersonService {
 
     public Flux<PersonDTO> getPeopleByOddAge() {
         log.info(" +++ @Service getPeopleByOddAge() called");
-        return personRepository.findAll()
+        Flux<PersonDTO> fluxPersonDTO = personRepository.findAll()
                 .map(PersonTransformer::entityToDTO)
-                .filter(personDTO -> personDTO.getAge() % 2 != 0)
+                //.filter(personDTO -> (personDTO.getAge() % 2 != 0))
                 .log();
+                fluxPersonDTO.subscribe();
+        return fluxPersonDTO;
     }
 
     public Flux<PersonDTO> getPeopleByEvenAge() {
@@ -95,10 +97,20 @@ public class PersonService {
                 .map(PersonTransformer::entityToDTO);
     }
 
-    public String deletePerson(String id) {
+    public Mono<String> deletePerson(String id) {
         log.info(" ++ @Service deletePeople(String id) called");
-        personRepository.deleteById(id);
-        return "Person deleted with success";
+        return personRepository
+                .deleteById(id)
+                .thenReturn("Person deleted successfully")
+                .onErrorReturn("Error while deleting a person");
+    }
+
+    public Mono<String> deletePeople() {
+        log.info(" ++ @Service deletePeople() called");
+        return personRepository
+                .deleteAll()
+                .thenReturn("All people deleted successfully")
+                .onErrorReturn("Error while deleting all people");
     }
 
     public String initDb(AddressService addressService) throws Exception {
@@ -147,4 +159,6 @@ public class PersonService {
             return null;
         }
     }
+
+
 }

@@ -68,8 +68,13 @@ public class ReactivePersonController {
     }
 
     @DeleteMapping(value = "/deleteperson/{id}")
-    public String deletePerson(@PathVariable String id) {
+    public  Mono<String> deletePerson(@PathVariable String id) {
         return personService.deletePerson(id);
+    }
+
+    @DeleteMapping(value = "/deleteAll")
+    public  Mono<String> deletePeople() {
+        return personService.deletePeople();
     }
 
     @PostMapping(value = "/initDatabase")

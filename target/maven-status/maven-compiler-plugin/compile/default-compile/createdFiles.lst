@@ -19,7 +19,9 @@ com/javaexample/spring/reactive/transformer/AddressTransformer.class
 com/javaexample/spring/reactive/exercises/Part05Merge.class
 com/javaexample/spring/reactive/exercises/pojo/User.class
 com/javaexample/spring/reactive/exercises/Part10ReactiveToBlocking.class
+com/javaexample/spring/reactive/dto/AddressDTO$AddressDTOBuilder.class
 com/javaexample/spring/reactive/repository/PersonRepository.class
+com/javaexample/spring/reactive/dto/PersonDTO$PersonDTOBuilder.class
 com/javaexample/spring/reactive/exercises/Part09Adapt.class
 com/javaexample/spring/reactive/dto/AddressDTO.class
 com/javaexample/spring/reactive/dto/PersonDTO.class
