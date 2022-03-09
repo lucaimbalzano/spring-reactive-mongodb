@@ -1,0 +1,16 @@
+# Common
+spring:
+  application:
+    name: pudo-connector
+  cloud.vault:
+    application-name: ${spring.application.name}
+    namespace: your/folder
+    uri: https://youruri
+    authentication: kubernetes
+    kubernetes:
+      role: ${YOUR_ROLE_NAME}
+      kubernetes-path: ${YOUR_AUTH_PATH}
+    config.lifecycle.enabled: false
+    fail-fast: true
+    generic:
+      default-context: ${spring.application.name}

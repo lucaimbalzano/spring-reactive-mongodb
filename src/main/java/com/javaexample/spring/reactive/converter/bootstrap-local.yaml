@@ -1,0 +1,5 @@
+# Common
+spring:
+  cloud.vault:
+    authentication: token
+    token: ${YOUR_TOKEN}
