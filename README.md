@@ -8,7 +8,7 @@
 **1. Clone Repository**
 
 ```bash
-git clone https://github.com/callicoder/spring-webflux-reactive-rest-api-demo.git
+git clone https://github.com/lucaimbalzano/spring-reactive-mongodb
 ```
 
 **2. Build and run the app using maven**
